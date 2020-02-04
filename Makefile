@@ -2,9 +2,13 @@ default: build test
 .PHONY: build test
 
 build:
-	pip install pipenv
-	pipenv install 
+	 docker-compose up -d --build 
 
-test:
-	pipenv install --dev
-	pipenv run python -m pytest "project/tests"
+test: 
+	docker-compose exec -T users pipenv run python -m pytest "project/tests"
+
+create_db:
+	docker-compose exec -T users pipenv run python manage.py recreate_db
+
+stop:
+	docker-compose down
