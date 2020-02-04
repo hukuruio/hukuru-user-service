@@ -3,7 +3,7 @@ kind: pipeline
 name: default
 
 steps:
-  - name: prepare
+  - name: build
     image: python:3
     commands:
       - make

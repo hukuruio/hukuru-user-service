@@ -2,7 +2,8 @@ default: build test
 .PHONY: build test
 
 build:
-	 pipenv install 
+	pip install pipenv
+	pipenv install 
 
 test:
 	pipenv install --dev
