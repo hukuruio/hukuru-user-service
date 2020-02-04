@@ -7,7 +7,7 @@ class BaseConfig:
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PROPAGATE_EXCEPTIONS = True
-    SECRET_KEY = "this-is-my-secret"
+    SECRET_KEY = 'my_precious'
 
 
 class DevelopmentConfig(BaseConfig):
