@@ -1,5 +1,6 @@
 # project/__init__.py
 
+import os
 
 from flask import Flask, jsonify
 from flask_restplus import Api, Resource
@@ -9,7 +10,9 @@ app = Flask(__name__)
 
 api = Api(app)
 
-app.config.from_object('project.config.DevelopmentConfig')
+# set config
+app_settings = os.getenv('APP_SETTINGS')
+app.config.from_object(app_settings) 
 
 class Ping(Resource):
     def get(self):

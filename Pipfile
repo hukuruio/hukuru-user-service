@@ -4,15 +4,29 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "*"
 pylint = "*"
-isort = "*"
 
 [packages]
-flask = "*"
-Flask-RESTPlus = "*"
+psycopg2-binary = "~=2.8.3"
+Flask = "*"
+flask-bcrypt = "*"
+Flask-JWT-Extended = "*"
+Flask-RESTful = "*"
+Flask-SQLAlchemy = "*"
+python-dotenv = "*"
+marshmallow-sqlalchemy = "*"
+marshmallow = "*"
+flask-marshmallow = "*"
+flask-migrate = "*"
+Flask-Cors = "*"
+pyjwt = {extras = ["crypto"],version = "*"}
+supervisor = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
 
 [pipenv]
-allow_prereleases = false
+allow_prereleases = true
+
+
