@@ -1,19 +1,41 @@
-# pull official base image
-FROM python:3.8.0-alpine
+FROM python:3-alpine
 
-# set working directory
-WORKDIR /usr/src/app
+ENV APP_ROOT=/opt/src
+ENV APP_BASE_DIR=${APP_ROOT}/app
+ARG APP_USER=tools
+
+
+# install dependencies
+RUN apk update; \
+  apk add --virtual build-deps openssl-dev libffi-dev gcc python3-dev musl-dev; \
+  apk add postgresql-dev; \
+  apk add netcat-openbsd bash ca-certificates curl wget; \
+  pip install pipenv; \
+  mkdir -p ${APP_BASE_DIR}; \
+  addgroup -g 1000 tools; \
+  adduser -D -u 1000 -G ${APP_USER} ${APP_USER}; \
+  chown -R ${APP_USER}:${APP_USER} ${APP_ROOT}
 
 # set environment varibles
+USER ${APP_USER}
+
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# set working directory
+WORKDIR ${APP_BASE_DIR}
+
 # add and install requirements
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+COPY ./src/Pip* ${APP_BASE_DIR}/
+
+RUN pipenv install; \
+  pipenv install --dev
+
+# add start.sh
+COPY ./src/start.sh ${APP_BASE_DIR}/start.sh
+COPY ./docker/supervisord/dev-supervisord.conf ${APP_ROOT}/supervisord.conf
 
 # add app
-COPY . .
+COPY ./src ${APP_BASE_DIR}
 
-# run server
-CMD python manage.py run -h 0.0.0.0
+ENTRYPOINT [ "pipenv", "run", "python"]

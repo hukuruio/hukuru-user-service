@@ -1,5 +1,6 @@
-env
+.venv/*
 .dockerignore
 Dockerfile
 Dockerfile.prod
-Pipfile
+**.pytest_cache
+project/tests
