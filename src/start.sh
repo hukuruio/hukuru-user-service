@@ -1,8 +1,5 @@
 #!/bin/sh
 
-ls 
-ls src
-
 echo "Waiting for postgres..."
 
 while ! nc -z users-db 5432; do

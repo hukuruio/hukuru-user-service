@@ -9,7 +9,16 @@ steps:
       - name: dockersock
         path: /var/run/docker.sock
     commands:
-      - make
+      - make build
+
+  - name: test
+    image: hukuruio/docker-compose
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    commands:
+      - make test     
+
 
   - name: cleanup
     image: hukuruio/docker-compose 

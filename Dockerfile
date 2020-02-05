@@ -31,7 +31,7 @@ COPY ./src/Pip* ${APP_BASE_DIR}/
 RUN pipenv install --ignore-pipfile
 
 # add start.sh
-COPY ./src/start.sh ${APP_ROOT}/start.sh
+COPY ./src/start.sh ${APP_BASE_DIR}/start.sh
 COPY ./docker/supervisord/dev-supervisord.conf ${APP_ROOT}/supervisord.conf
 
 # add app
