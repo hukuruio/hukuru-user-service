@@ -6,6 +6,7 @@ build:
 
 test: 
 	docker ps
+	sleep 5
 	docker-compose exec -T users pipenv install --dev
 	docker-compose exec -T users pipenv run python -m pytest -p no:warnings --color=yes ${ARGS} "project/tests"
 
@@ -20,4 +21,4 @@ lock: build
 	docker-compose exec -T users pipenv lock
 
 cleanup:
-	docker-compose down --rmi all -v
+	docker-compose down #--rmi all -v
