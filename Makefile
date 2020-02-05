@@ -7,7 +7,7 @@ build:
 test:
 	docker-compose logs users
 	docker-compose exec -T users pipenv install --dev
-	docker-compose exec -T users pipenv run python -m pytest -p no:warnings --color=yes "project/tests"
+	docker-compose exec -T users pipenv run python -m pytest -p no:warnings no:cacheprovider --color=yes "project/tests"
 
 create_db:
 	docker-compose exec -T users pipenv run python manage.py recreate_db
