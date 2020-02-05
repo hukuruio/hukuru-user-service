@@ -5,8 +5,8 @@ build:
 	 docker-compose up -d --build 
 
 test: 
-	docker ps
-	sleep 10
+	docker-compose logs users
+	sleep 5
 	echo "paused -->"
 	docker ps 
 	docker-compose exec -T users pipenv install --dev
