@@ -5,8 +5,32 @@ name: default
 steps:
   - name: build
     image: hukuruio/docker-compose
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
     commands:
-      - make
+      - make build
+
+  - name: test
+    image: hukuruio/docker-compose
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    commands:
+      - make test     
+
+
+  - name: cleanup
+    image: hukuruio/docker-compose 
+    commands:
+      - make cleanup
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    when:
+      status:
+      - success
+      - failure
 
 volumes:
   - name: dockersock
