@@ -8,8 +8,6 @@ steps:
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
-      - name: source
-        path: /opt/src/app
     commands:
       - make
 
@@ -29,6 +27,3 @@ volumes:
   - name: dockersock
     host:
       path: /var/run/docker.sock
-  - name: source
-    path: /drone/src
-    
