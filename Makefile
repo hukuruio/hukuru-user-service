@@ -6,9 +6,11 @@ build:
 
 test: 
 	docker ps
-	sleep 5
+	sleep 10
+	echo "paused -->"
+	docker ps 
 	docker-compose exec -T users pipenv install --dev
-	docker-compose exec -T users pipenv run python -m pytest -p no:warnings --color=yes ${ARGS} "project/tests"
+	docker-compose exec -T users pipenv run python -m pytest -p no:warnings --color=yes "project/tests"
 
 create_db:
 	docker-compose exec -T users pipenv run python manage.py recreate_db
