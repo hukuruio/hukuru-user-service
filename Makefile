@@ -13,3 +13,6 @@ create_db:
 
 stop:
 	docker-compose down
+
+stop:
+	docker-compose down -v -rmi --all
