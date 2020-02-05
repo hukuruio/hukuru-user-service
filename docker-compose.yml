@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./src:/opt/src/app
+      - src:/opt/src/app
     entrypoint: ["sh", "/opt/src/app/start.sh"]
     container_name: users
     ports:
