@@ -9,8 +9,6 @@ steps:
       - name: dockersock
         path: /var/run/docker.sock
     commands:
-      - pwd
-      - ls
       - make
 
   - name: cleanup
