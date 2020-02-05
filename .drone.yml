@@ -12,7 +12,7 @@ steps:
       - make
 
   - name: cleanup
-    image: mojdigitalstudio/hmpps-docker-compose:latest
+    image: hukuruio/docker-compose 
     commands:
       - make cleanup
     volumes:
