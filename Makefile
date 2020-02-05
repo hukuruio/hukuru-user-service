@@ -20,4 +20,4 @@ lock: build
 	docker-compose exec -T users pipenv lock
 
 cleanup:
-	docker-compose down #--rmi all -v
+	docker-compose down --rmi all -v
