@@ -11,6 +11,18 @@ steps:
     commands:
       - make
 
+  - name: cleanup
+    image: mojdigitalstudio/hmpps-docker-compose:latest
+    commands:
+      - make cleanup
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    when:
+      status:
+      - success
+      - failure
+
 volumes:
   - name: dockersock
     host:

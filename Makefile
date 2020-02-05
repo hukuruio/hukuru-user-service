@@ -15,4 +15,4 @@ stop:
 	docker-compose down
 
 cleanup:
-	docker-compose down -v -rmi --all
+	docker-compose down --rmi all -v
