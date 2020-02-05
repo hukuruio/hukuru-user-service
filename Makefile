@@ -2,7 +2,6 @@ default: build test
 .PHONY: build test
 
 build:
-  docker-compose config
 	docker-compose up -d --build 
 
 test:
