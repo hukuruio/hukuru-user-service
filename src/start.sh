@@ -1,6 +1,7 @@
 #!/bin/sh
 
-ls
+ls 
+ls src
 
 echo "Waiting for postgres..."
 
