@@ -6,9 +6,6 @@ build:
 
 test: 
 	docker-compose logs users
-	sleep 5
-	echo "paused -->"
-	docker ps 
 	docker-compose exec -T users pipenv install --dev
 	docker-compose exec -T users pipenv run python -m pytest -p no:warnings --color=yes "project/tests"
 
