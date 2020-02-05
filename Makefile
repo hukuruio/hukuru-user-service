@@ -4,7 +4,9 @@ default: build test
 build:
 	 docker-compose up -d --build 
 
-test: 
+test:
+	pwd
+	ls
 	docker-compose logs users
 	docker-compose exec -T users pipenv install --dev
 	docker-compose exec -T users pipenv run python -m pytest -p no:warnings --color=yes "project/tests"
