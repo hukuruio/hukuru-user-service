@@ -14,5 +14,5 @@ create_db:
 stop:
 	docker-compose down
 
-stop:
+cleanup:
 	docker-compose down -v -rmi --all
