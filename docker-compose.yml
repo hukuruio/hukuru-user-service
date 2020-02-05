@@ -6,8 +6,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - /drone/src/src:/opt/src/app
     entrypoint: ["sh", "/opt/src/app/start.sh"]
     container_name: users
     ports:
