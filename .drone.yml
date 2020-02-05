@@ -6,7 +6,8 @@ steps:
   - name: build
     image: hukuruio/docker-compose
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - name: dockersock
+        path: /var/run/docker.sock
     commands:
       - make
 
