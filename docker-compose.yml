@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     entrypoint: ["sh", "/opt/src/app/start.sh"]
     container_name: users
+    volumes:
+      - ./src:/opt/src/app
     ports:
       - 5001:5000
     environment:

@@ -3,6 +3,11 @@ kind: pipeline
 name: default
 
 steps:
+  - name: prepare
+    image: hukuruio/docker-compose
+    commands:
+      - cp docker-compose.override.yml.txt docker-compose.override.yml
+ 
   - name: build
     image: hukuruio/docker-compose
     volumes:
