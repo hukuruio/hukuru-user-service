@@ -2,31 +2,30 @@ default: build test
 .PHONY: build test
 
 build:
-	docker-compose -f docker-compose.yml down
-	docker-compose -f docker-compose-dev.yml up -d --build 
+	docker-compose -f docker-compose-prod.yml down
+	docker-compose up -d --build 
 
 test:
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv install --dev --skip-lock
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv run python -m pytest
+	docker-compose exec -T users pipenv install --dev
+	docker-compose exec -T users pipenv run pytest
 
 create_db:
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv run python manage.py recreate_db
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv run python manage.py seed_db
+	docker-compose exec -T users pipenv run python manage.py recreate_db
+	docker-compose exec -T users pipenv run python manage.py seed_db
 
 stop:
-	docker-compose -f docker-compose-dev.yml down
-	docker-compose -f docker-compose.yml down 
+	docker-compose down
+	docker-compose -f docker-compose-prod.yml down 
 
 lock:
-	docker-compose -f docker-compose-dev.yml up -d
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv lock 
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv lock -r > requirements.txt
-	echo gunicorn==20.0.4 >> requirements.txt
+	docker-compose up -d
+	docker-compose exec -T users pipenv lock 
+	docker-compose exec -T users pipenv lock -r > requirements.txt
 
 release:
-	docker-compose -f docker-compose-dev.yml down
-	docker-compose -f docker-compose.yml up -d --build
+	docker-compose down
+	docker-compose -f docker-compose-prod.yml up -d --build
 
 cleanup:
-	docker-compose -f docker-compose-dev.yml down --rmi all -v
-	docker-compose -f docker-compose.yml down --rmi all -v
+	docker-compose down --rmi all -v
+	docker-compose -f docker-compose-prod.yml down --rmi all -v
