@@ -6,8 +6,8 @@ build:
 	docker-compose -f docker-compose-dev.yml up -d --build 
 
 test:
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv install --dev
-	docker-compose -f docker-compose-dev.yml exec -T users pipenv run python -m pytest -p no:warnings -o cache_dir=/opt/src/pytest_cache --color=yes "project/tests"
+	docker-compose -f docker-compose-dev.yml exec -T users pipenv install --dev --skip-lock
+	docker-compose -f docker-compose-dev.yml exec -T users pipenv run python -m pytest
 
 create_db:
 	docker-compose -f docker-compose-dev.yml exec -T users pipenv run python manage.py recreate_db
@@ -19,6 +19,7 @@ stop:
 
 lock:
 	docker-compose -f docker-compose-dev.yml up -d
+	docker-compose -f docker-compose-dev.yml exec -T users pipenv lock 
 	docker-compose -f docker-compose-dev.yml exec -T users pipenv lock -r > requirements.txt
 	echo gunicorn==20.0.4 >> requirements.txt
 
