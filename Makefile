@@ -8,6 +8,8 @@ build:
 test:
 	docker-compose exec -T users pipenv run pytest
 	docker-compose exec -T users pipenv run flake8 project
+	docker-compose exec -T users pipenv run black project
+	docker-compose exec -T users /bin/sh -c "pipenv run isort project/*/*.py"
 
 create_db:
 	docker-compose exec -T users pipenv run python manage.py recreate_db
@@ -29,6 +31,7 @@ release:
 test_release:
 	docker-compose -f docker-compose-prod.yml exec -T users pipenv install --dev
 	docker-compose -f docker-compose-prod.yml exec -T users pipenv run pytest
+	docker-compose -f docker-compose-prod.yml exec -T users pipenv run flake8 project
 
 cleanup:
 	docker-compose down --rmi all -v

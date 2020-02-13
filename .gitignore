@@ -5,3 +5,5 @@ __pycache__
 docker-compose.override.yml
 src/htmlcov
 src/.coverage
+Pipfile.lock
+Pipfile
