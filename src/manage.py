@@ -4,7 +4,6 @@
 import sys
 
 from flask.cli import FlaskGroup
-
 from project import create_app, db
 from project.api.models import User
 
@@ -20,8 +19,8 @@ def recreate_db():
 
 @cli.command('seed_db')
 def seed_db():
-    db.session.add(User(username='michael', email="hermanmu@gmail.com"))
-    db.session.add(User(username='michaelherman', email="michael@mherman.org"))
+    db.session.add(User(username='jongwe', email="jongwe@chabaya.net"))
+    db.session.add(User(username='mutongi', email="mutongi@chabaya.net"))
     db.session.commit()
     
 if __name__ == '__main__':
