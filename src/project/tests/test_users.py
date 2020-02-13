@@ -20,6 +20,7 @@ def test_add_user(test_app, test_database):
     assert resp.status_code == 201
     assert 'michael@testdriven.io was added!' in data['message']
 
+
 # PAYLOAD TESTS
 def test_add_user_invalid_json(test_app, test_database):
     client = test_app.test_client()
@@ -67,6 +68,7 @@ def test_add_user_duplicate_email(test_app, test_database):
     assert resp.status_code == 400
     assert 'Sorry. That email already exists.' in data['message']
 
+
 def test_single_user(test_app, test_database, add_user):
     user = add_user('jeffrey', 'jeffrey@testdriven.io')
     client = test_app.test_client()
@@ -76,12 +78,14 @@ def test_single_user(test_app, test_database, add_user):
     assert 'jeffrey' in data['username']
     assert 'jeffrey@testdriven.io' in data['email']
 
+
 def test_single_user_incorrect_id(test_app, test_database):
     client = test_app.test_client()
     resp = client.get('/users/999')
     data = json.loads(resp.data.decode())
     assert resp.status_code == 404
     assert 'User 999 does not exist' in data['message']
+
 
 def test_all_users(test_app, test_database, add_user):
     test_database.session.query(User).delete()

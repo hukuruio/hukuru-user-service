@@ -3,7 +3,6 @@
 
 from flask import Blueprint, request
 from flask_restplus import Api, Resource, fields
-
 from project import db
 from project.api.models import User
 
@@ -17,12 +16,13 @@ user = api.model('User', {
     'created_date': fields.DateTime,
 })
 
+
 class UsersList(Resource):
 
     @api.marshal_with(user, as_list=True)
     def get(self):
         return User.query.all(), 200
-            
+
     @api.expect(user, validate=True)
     def post(self):
         post_data = request.get_json()
@@ -39,6 +39,7 @@ class UsersList(Resource):
         response_object['message'] = f'{email} was added!'
         return response_object, 201
 
+
 class Users(Resource):
 
     @api.marshal_with(user)
@@ -47,6 +48,7 @@ class Users(Resource):
         if not user:
             api.abort(404, f"User {user_id} does not exist")
         return user, 200
+
 
 api.add_resource(UsersList, '/users')
 api.add_resource(Users, '/users/<int:user_id>')

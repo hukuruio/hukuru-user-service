@@ -28,7 +28,8 @@ WORKDIR ${APP_BASE_DIR}
 # add and install requirements
 COPY ./src/Pip* ${APP_BASE_DIR}/
 
-RUN pipenv install
+RUN pipenv install; \
+  pipenv install --dev
 
 # add start.sh
 COPY ./src/start.sh ${APP_BASE_DIR}/start.sh

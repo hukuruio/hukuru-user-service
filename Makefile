@@ -6,7 +6,6 @@ build:
 	docker-compose up -d --build 
 
 test:
-	docker-compose exec -T users pipenv install --dev
 	docker-compose exec -T users pipenv run pytest
 	docker-compose exec -T users pipenv run flake8 project
 
