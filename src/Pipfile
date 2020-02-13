@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 pytest = "==5.3.1"
 pylint = "*"
+pytest-cov = "==2.8.1"
+flake8 = "==3.7.9"
 
 [packages]
 psycopg2-binary = "==2.8.4"

@@ -1,4 +1,7 @@
 __pycache__
 .venv
+**pytest_cache
 
 docker-compose.override.yml
+src/htmlcov
+src/.coverage

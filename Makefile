@@ -8,6 +8,7 @@ build:
 test:
 	docker-compose exec -T users pipenv install --dev
 	docker-compose exec -T users pipenv run pytest
+	docker-compose exec -T users pipenv run flake8 project
 
 create_db:
 	docker-compose exec -T users pipenv run python manage.py recreate_db
