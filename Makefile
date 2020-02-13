@@ -26,6 +26,10 @@ release:
 	docker-compose down
 	docker-compose -f docker-compose-prod.yml up -d --build
 
+test_release:
+	docker-compose -f docker-compose-prod.yml exec -T users pipenv install --dev
+	docker-compose -f docker-compose-prod.yml exec -T users pipenv run pytest
+
 cleanup:
 	docker-compose down --rmi all -v
 	docker-compose -f docker-compose-prod.yml down --rmi all -v
