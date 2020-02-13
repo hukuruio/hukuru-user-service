@@ -17,7 +17,8 @@ steps:
       - name: dockersock
         path: /var/run/docker.sock
     commands:
-      - make test_release     
+      - docker exec users pipenv install --dev
+      - make test     
 
 
   - name: cleanup
